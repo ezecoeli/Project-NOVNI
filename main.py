@@ -3,8 +3,6 @@ from pygame import mixer
 import random
 import csv
 import button
-import os
-import time
 
 # Pygame initialization
 pygame.init()
@@ -31,13 +29,14 @@ SCROLL_THRESH = 200
 ROWS = 16
 COLS = 150
 TILE_SIZE = SCREEN_HEIGHT // ROWS
-TILE_TYPES = 25
+TILE_TYPES = 26
 MAX_LEVELS = 6 #########  Update for more levels
 screen_scroll = 0
 bg_scroll = 0
 level = 1
 start_game = False
 start_intro = False
+show_story= False
 
 # Define player action variables
 moving_left = False
@@ -47,23 +46,22 @@ bomb = False
 bomb_thrown = False
 
 # Load music and sounds
-pygame.mixer.music.load("assets/audio/music/menu.mp3")
-pygame.mixer.music.set_volume(0.3)
-pygame.mixer.music.play(-1, 0.0, 5000)
 jump_fx = pygame.mixer.Sound("assets/audio/sounds/jump.mp3")
-jump_fx.set_volume(0.2)
+jump_fx.set_volume(0.1)
 power_fx = pygame.mixer.Sound("assets/audio/sounds/power.mp3")
 power_fx.set_volume(0.2)
 bomb_fx = pygame.mixer.Sound("assets/audio/sounds/bomb.mp3")
 bomb_fx.set_volume(0.2)
 thrown_bomb_fx = pygame.mixer.Sound("assets/audio/sounds/thrown_bomb.mp3")
-thrown_bomb_fx.set_volume(0.2)
+thrown_bomb_fx.set_volume(0.1)
 shot_fx = pygame.mixer.Sound("assets/audio/sounds/shot.mp3")
 shot_fx.set_volume(0.2)
 
 ## Load images
-logo_img = pygame.image.load("assets/images/logo.png")
+logo_img = pygame.image.load("assets/images/logo.png").convert_alpha()
 logo_img = pygame.transform.scale(logo_img, (SCREEN_WIDTH, SCREEN_HEIGHT))
+story_image = pygame.image.load("assets/images/story.png").convert_alpha()
+story_image = pygame.transform.scale(story_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
 # Button images
 start_img = pygame.image.load("assets/images/icons/start.png").convert_alpha()
 exit_img = pygame.image.load("assets/images/icons/exit.png").convert_alpha()
@@ -82,12 +80,15 @@ background_images = {
 }
 current_background = background_images[1]  # Start with level 1 background
 
-# Store tiles in a list
-img_list = []
-for x in range(TILE_TYPES):
-    img = pygame.image.load(f"assets/images/tiles/{x}.png")
-    img = pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE))
-    img_list.append(img)
+# Store tiles in a list based on the level
+def load_tiles_for_level(level):
+    img_list = []
+    tile_path = f"assets/images/tiles/level_{level}"
+    for x in range(TILE_TYPES):
+        img = pygame.image.load(f"{tile_path}/{x}.png")
+        img = pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE))
+        img_list.append(img)
+    return img_list
 
 # Weapons and skills
 power_img = pygame.image.load("assets/images/icons/power.png").convert_alpha()
@@ -114,7 +115,7 @@ RED = (255, 0, 0)
 GREEN = (0, 128, 0)
 
 # Define font
-font = pygame.font.Font("assets/fonts/vhs_gothic.ttf", 15)
+font = pygame.font.Font("assets/fonts/PressStart2P.ttf", 14)
 
 # Texts function
 def draw_text(text, font, text_col,x ,y):
@@ -192,6 +193,23 @@ class Alien(pygame.sprite.Sprite):
             img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
             temp_list.append(img)  
         self.animation_list.append(temp_list)
+        temp_list = []
+        for i in range(1):
+            img = pygame.image.load(f"assets/images/{self.char_type}/Shot/{i}.png")
+            img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
+            temp_list.append(img)
+        self.animation_list.append(temp_list)
+        temp_list = []
+        for i in range(1):
+            img = pygame.image.load(f"assets/images/{self.char_type}/Throw/{i}.png")
+            img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
+            temp_list.append(img)
+        self.animation_list.append(temp_list)
+        for i in range(1):
+            img = pygame.image.load(f"assets/images/{self.char_type}/Crouch/{i}.png")
+            img = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
+            temp_list.append(img)
+        self.animation_list.append(temp_list)
         self.image = self.animation_list[self.action][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
@@ -210,6 +228,7 @@ class Alien(pygame.sprite.Sprite):
         screen_scroll = 0
         dx = 0
         dy = 0
+
         # Assign movement variables left or right
         if moving_left:
             dx = -self.speed
@@ -220,9 +239,17 @@ class Alien(pygame.sprite.Sprite):
             self.flip = False
             self.direction = 1
 
+        # Shot
+        if shoot:
+            self.update_action(4) #4: Shot 
+
+        # Throw bombs
+        if bomb_thrown:
+            self.update_action(5) #5: Throw
+
         # Jump
         if self.jump == True and self.in_air == False:
-            self.vel_y = -15
+            self.vel_y = -16
             self.jump = False
             self.in_air = True
 
@@ -287,16 +314,17 @@ class Alien(pygame.sprite.Sprite):
 
     def shoot(self):
         if self.shoot_cooldown == 0 and self.ammo > 0:
-            self.shoot_cooldown = 20
+            self.shoot_cooldown = 15
             power = Power(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery, self.direction)
             power_group.add(power)
 			# Reduce ammo
             self.ammo -= 1
-            shot_fx.play()
+            power_fx.play()
+            
 
     def update_animation(self):
         # update animation
-        ANIMATION_COOLDOWN = 300
+        ANIMATION_COOLDOWN = 200
         # Update image depending on current time
         self.image = self.animation_list[self.action][self.frame_index]
         # Check if enough time has passed since the last update
@@ -548,7 +576,7 @@ class Soldier(pygame.sprite.Sprite):
     def shoot(self):
         if self.shoot_cooldown == 0 and self.ammo > 0:
             self.shoot_cooldown = 20
-            bullet = Bullet(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery - 10, self.direction)
+            bullet = Bullet(self.rect.centerx + (0.75 * self.rect.size[0] * self.direction), self.rect.centery - 13, self.direction)
             bullet_group.add(bullet)
             # Reduce ammo
             self.ammo -= 1
@@ -592,7 +620,7 @@ class Soldier(pygame.sprite.Sprite):
 
     def update_animation(self):
 		# Update animation
-        ANIMATION_COOLDOWN = 300
+        ANIMATION_COOLDOWN = 200
 		# Update image depending on current frame
         self.image = self.animation_list[self.action][self.frame_index]
 		# Check if enough time has passed since the last update
@@ -667,7 +695,8 @@ class World():
             18: lambda img, x, y: self.add_item_box("Bombs", x, y),
             19: lambda img, x, y: self.add_item_box("Health", x, y),
             20: self.add_exit,
-            range(21, 30): self.add_decoration,
+            range(21, 25): self.add_decoration,
+            25: self.add_enemy2,
         }
 
     def add_obstacle(self, img, x, y):
@@ -687,10 +716,14 @@ class World():
     def add_player(self, img, x, y):
         global player, health_bar
         player = Alien("player", x * TILE_SIZE, y * TILE_SIZE, 0.8, 5, 10, 5)
-        health_bar = HealthBar(10, 10, player.health, player.health)
+        health_bar = HealthBar(8, 10, player.health, player.health)
 
     def add_enemy(self, img, x, y):
         enemy = Soldier("enemy", x * TILE_SIZE, y * TILE_SIZE, 0.9, 2, 100)
+        enemy_group.add(enemy)
+
+    def add_enemy2(self, img, x, y):
+        enemy = Soldier("enemy2", x * TILE_SIZE, y * TILE_SIZE, 0.9, 2, 100)
         enemy_group.add(enemy)
 
     def add_item_box(self, item_type, x, y):
@@ -701,9 +734,12 @@ class World():
         exit = Exit(img, x * TILE_SIZE, y * TILE_SIZE)
         exit_group.add(exit)
 
-    def process_data(self, data):
+    def process_data(self, data, level):
+        # Load tiles for the current level
+        global img_list
+        img_list = load_tiles_for_level(level)
+
         self.level_length = len(data[0])
-        # Iterate through each value in level data
         for y, row in enumerate(data):
             for x, tile in enumerate(row):
                 if tile >= 0:
@@ -718,15 +754,6 @@ class World():
         for tile in self.obstacle_list:
             tile[1][0] += screen_scroll
             screen.blit(tile[0], tile[1])
-
-# Function to load tiles dynamically by level
-def load_tile_images(level_path):
-    img_list = []
-    for i in range(len(os.listdir(level_path))):
-        img = pygame.image.load(f"{level_path}/{i}.png").convert_alpha()
-        img = pygame.transform.scale(img, (TILE_SIZE, TILE_SIZE))
-        img_list.append(img)
-    return img_list
 
 # Decorations class
 class Decoration(pygame.sprite.Sprite):
@@ -800,9 +827,9 @@ class HealthBar():
         self.health = health
         # Calculate health ratio
         ratio = self.health / self.max_health
-        pygame.draw.rect(screen, BLACK, (self.x - 2, self.y - 2, 154 * ratio, 24))
-        pygame.draw.rect(screen, RED, (self.x, self.y, 150, 20))
-        pygame.draw.rect(screen, GREEN, (self.x, self.y, 150 * ratio, 20))
+        pygame.draw.rect(screen, BLACK, (self.x - 2, self.y - 2, 160 * ratio, 24))
+        pygame.draw.rect(screen, RED, (self.x, self.y, 156, 20))
+        pygame.draw.rect(screen, GREEN, (self.x, self.y, 156 * ratio, 20))
 
 # Explotions
 class Explosion(pygame.sprite.Sprite):
@@ -864,8 +891,8 @@ intro_fade = ScreenFade(1, MATTE_BLACK, 4)
 death_fade = ScreenFade(2, BLACK, 4)
 
 # Create buttons
-start_button = button.Button(SCREEN_WIDTH // 2 - 38, SCREEN_HEIGHT - 200, start_img, 0.4)
-exit_button = button.Button(SCREEN_WIDTH - 90, SCREEN_HEIGHT - 70, exit_img, 0.4)
+start_button = button.Button(SCREEN_WIDTH // 2 - 38, SCREEN_HEIGHT - 220, start_img, 0.4)
+exit_button = button.Button(737, 3, exit_img, 0.3)
 restart_button = button.Button(SCREEN_WIDTH // 2 - 50, SCREEN_HEIGHT // 2 + 120, restart_img, 0.4)
 
 # Create sprite groups
@@ -891,98 +918,137 @@ with open(f'level{level}_data.csv', newline='') as csvfile:
 		for y, tile in enumerate(row):
 			world_data[x][y] = int(tile)
 world = World()
-player, health_bar = world.process_data(world_data)
+player, health_bar = world.process_data(world_data, level)
 
 
-# Main
+# Main Loop
+menu_music_started = False
+game_music_started = False
 run = True
+
 while run:
-
     clock.tick(FPS)
-
     if start_game == False:
-        # Draw menu
+        # Start menu music
+        if not menu_music_started:
+            pygame.mixer.music.load("assets/audio/music/intro.mp3")
+            pygame.mixer.music.set_volume(0.2)
+            pygame.mixer.music.play(-1, 0.0, 1000)  
+            menu_music_started = True
+
+    # Events and keys
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                run = False
+            elif not start_game:  # Main menu
+                if event.key == pygame.K_RETURN:
+                    show_story = True
+                    start_game = True
+                    start_intro = True
+            elif show_story:  # Story
+                if event.key == pygame.K_RETURN:
+                    show_story = False
+                    start_intro = True
+            elif start_game:  # Game
+                if event.key == pygame.K_LEFT:
+                    moving_left = True
+                elif event.key == pygame.K_RIGHT:
+                    moving_right = True
+                elif event.key == pygame.K_a:
+                    shoot = True
+                elif event.key == pygame.K_s:
+                    bomb = True
+                    thrown_bomb_fx.play()
+                elif event.key == pygame.K_SPACE and player.alive:
+                    player.jump = True
+                    jump_fx.play()
+                
+        elif event.type == pygame.KEYUP:
+            if start_game:
+                if event.key == pygame.K_LEFT:
+                    moving_left = False
+                elif event.key == pygame.K_RIGHT:
+                    moving_right = False
+                elif event.key == pygame.K_a:
+                    shoot = False
+                elif event.key == pygame.K_s:
+                    bomb = False
+                    bomb_thrown = False
+
+    # Draw menu
+    if not start_game:
         screen.fill(MATTE_BLACK)
-        # Add buttons and Logo
         screen.blit(logo_img, (0, 0))
         if start_button.draw(screen):
+            show_story = True
             start_game = True
             start_intro = True
-        if exit_button.draw(screen):
+        elif exit_button.draw(screen):
             run = False
+
+    # Story
+    elif show_story:
+        screen.blit(story_image, (0, 0))
+        draw_text("Presiona Enter para comenzar...", font, WHITE, 369, 617)
+        
+    # Game
     else:
-        # Update background
+        # Stop menu music and play game music
+        if not game_music_started:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load("assets/audio/music/game.mp3")  
+            pygame.mixer.music.set_volume(0.1)
+            pygame.mixer.music.play(-1, 0.0, 1000)  
+            game_music_started = True
+            menu_music_started = False
         draw_bg()
-        # Draw world map
         world.draw()
-        # Show player health
         health_bar.draw(player.health)
-        # Show health
-        draw_text(f"HEALTH: {player.health}", font, WHITE, 10, 12)
-        # Show ammo
-        draw_text("AMMO: ", font, WHITE, 10, 35)
+        draw_text(f"SALUD: {player.health}", font, WHITE, 10, 13)
+        screen.blit(ammo_box_img, (6,32))
         for x in range(player.ammo):
-            screen.blit(power_img, (65 + (x * 10), 36))
-        # Show bombs
-        draw_text("BOMBS: ", font, WHITE, 10, 60)
+            screen.blit(power_img, (42 + (x * 12), 35))
+        screen.blit(bombs_box_img, (8, 60))
         for x in range(player.bombs):
-            screen.blit(bomb_img, (77 + (x * 10), 65))
+            screen.blit(bomb_img, (45 + (x * 12), 64))
         
         player.update()
         player.draw()
 
-        # Update and draw enemies
         for enemy in enemy_group:
             enemy.ai()
             enemy.update()
             enemy.draw()
 
-        # Update groups
-        power_group.update()
-        bullet_group.update()
-        bomb_group.update()
-        explosion_group.update()
-        item_box_group.update()
-        decoration_group.update()
-        water_group.update()
-        exit_group.update()
-        # Draw groups
-        power_group.draw(screen)
-        bullet_group.draw(screen)
-        bomb_group.draw(screen)
-        explosion_group.draw(screen)
-        item_box_group.draw(screen)
-        decoration_group.draw(screen)
-        water_group.draw(screen)
-        exit_group.draw(screen)
+        # Update and draw groups
+        for group in [power_group, bullet_group, bomb_group, explosion_group, item_box_group, decoration_group, water_group, exit_group]:
+            group.update()
+            group.draw(screen)
 
-        # Show intro
-        if start_intro == True:
-            if intro_fade.fade():
-                start_intro = False
-                intro_fade.fade_counter = 0
+        # Show fade
+        if start_intro and intro_fade.fade():
+            start_intro = False
+            intro_fade.fade_counter = 0
 
-        # Update player actions
         if player.alive:
-            # Shoot power
             if shoot:
                 player.shoot()
-            # Throw bombs
-            elif bomb and bomb_thrown == False and player.bombs > 0:
+            elif bomb and not bomb_thrown and player.bombs > 0:
                 bomb = Bombs(player.rect.centerx + (0.5 * player.rect.size[0] * player.direction), player.rect.top, player.direction)
                 bomb_group.add(bomb)
-                # Reduce bombs
                 player.bombs -= 1
                 bomb_thrown = True
             if player.in_air:
-                player.update_action(2) #2: jump
+                player.update_action(2)
             elif moving_left or moving_right:
-                player.update_action(1) #1: run
+                player.update_action(1)
             else:
-                player.update_action(0) #0: idle
+                player.update_action(0)
             screen_scroll, level_complete = player.move(moving_left, moving_right)
             bg_scroll -= screen_scroll
-            # Check if player has completed the level
             if level_complete:
                 start_intro = True
                 level += 1
@@ -990,64 +1056,43 @@ while run:
                 world_data = reset_level()
                 if level <= MAX_LEVELS:
                     current_background = background_images[level]
-                    # Load in level data and create world
-                    with open(f"level{level}_data.csv", newline= "") as csvfile:
-                        reader = csv.reader(csvfile, delimiter= ",")
+                    # Load level data
+                    with open(f"level{level}_data.csv", newline="") as csvfile:
+                        reader = csv.reader(csvfile, delimiter=",")
                         for x, row in enumerate(reader):
                             for y, tile in enumerate(row):
                                 world_data[x][y] = int(tile)
                     world = World()
-                    player, health_bar = world.process_data(world_data)
+                    player, health_bar = world.process_data(world_data, level)
         else:
             screen_scroll = 0
             if death_fade.fade():
+                # Show "Game Over" screen
                 screen.blit(game_over_img, (250, 200))
                 if restart_button.draw(screen):
+                    # Reset variables for restart game
                     death_fade.fade_counter = 0
                     start_intro = True
                     bg_scroll = 0
+                    level = 1  
+                    player.health = player.max_health  
+                    player.alive = True  
+                    moving_left = False
+                    moving_right = False
+                    shoot = False
+                    bomb = False
+                    bomb_thrown = False
+
+                    # Restart level data
                     world_data = reset_level()
-                    # Load in level data and create world
-                    with open(f"level{level}_data.csv", newline= "") as csvfile:
-                        reader = csv.reader(csvfile, delimiter= ",")
+                    with open(f"level{level}_data.csv", newline="") as csvfile:
+                        reader = csv.reader(csvfile, delimiter=",")
                         for x, row in enumerate(reader):
                             for y, tile in enumerate(row):
                                 world_data[x][y] = int(tile)
                     world = World()
-                    player, health_bar = world.process_data(world_data)
-
-    for event in pygame.event.get():
-        # Quit game
-        if event.type == pygame.QUIT:
-            run = False
-        # Keyboard presses    
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_a:
-                moving_left = True
-            if event.key == pygame.K_d:
-                moving_right = True
-            if event.key == pygame.K_SPACE:
-                shoot = True
-            if event.key == pygame.K_q:
-                bomb = True
-                thrown_bomb_fx.play()
-            if event.key == pygame.K_w and player.alive:
-                player.jump = True
-                jump_fx.play()
-            if event.key == pygame.K_ESCAPE:
-                run = False
-
-        # Keyboard button released
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_a:
-                moving_left = False
-            if event.key == pygame.K_d:
-                moving_right = False
-            if event.key == pygame.K_SPACE:
-                shoot = False    
-            if event.key == pygame.K_q:
-                bomb = False
-                bomb_thrown = False
+                    player, health_bar = world.process_data(world_data, level)
+                    current_background = background_images[level]
 
     pygame.display.update()
 
