@@ -66,7 +66,7 @@ A lo largo del viaje, NOVNI contará con la ayuda de algunos humanos que le ofre
 ## Contribuciones
 ¡Contribuciones son bienvenidas! Si deseas mejorar este proyecto, puedes hacer un fork del repositorio y enviar un pull request con tus cambios. Asegúrate de seguir las buenas prácticas de codificación y agregar comentarios en el código para mayor claridad.
 
-## Licencia
+# Licencia
 Copyright (c) [2025] [Ezequiel Camilo Coeli]. Todos los derechos reservados.
 
 Ninguna parte de este software puede ser reproducida, distribuida o utilizada sin el permiso explícito del autor.
