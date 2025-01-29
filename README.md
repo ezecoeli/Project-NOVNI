@@ -18,14 +18,14 @@ El jugador controla a **NOVNI**, quien tiene habilidades especiales como el salt
 A lo largo de los niveles, el jugador debe recolectar partes de la nave que le permitirán repararla y escapar de la Tierra.
 Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como salud, munición y bombas.
 
-### Mecánicas de Juego
+## Mecánicas de Juego
 - Movimiento de izquierda a derecha.
 - Salto.
 - Disparos.
 - Lanzar bombas.
 - Recursos: Se pueden recoger cajas de salud, munición y bombas para ayudar a NOVNI en su misión.
 
-### Niveles
+## Niveles
 El juego cuenta con varios niveles, donde NOVNI pasará por diferentes localizaciones, cada una con nuevos desafíos, enemigos y obstáculos. El objetivo es llegar a la localización del cuartel X5G y recoger las partes necesarias de la nave para repararla.
 
 ## Música y Sonido
