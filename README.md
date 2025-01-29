@@ -5,11 +5,11 @@ Un juego de aventura 2D en el que un alienígena debe sobrevivir y reparar su na
 
 ## Herramientas y Tecnologías utilizadas:
 
-Python: Lenguaje para el desarrollo del juego.
-Pygame: Biblioteca para la creación de videojuegos 2D, utilizada para gráficos, sonido, animaciones y control de eventos.
-csv: Gestión de datos del mundo del juego, como la creación de niveles y la persistencia del progreso.
-pygame.mixer: Implementación de música y efectos de sonido.
-pygame.sprite: Sistema de manejo de objetos interactivos, como el jugador, los enemigos y los elementos del entorno.
+** Python: Lenguaje para el desarrollo del juego.
+** Pygame: Biblioteca para la creación de videojuegos 2D, utilizada para gráficos, sonido, animaciones y control de eventos.
+** csv: Gestión de datos del mundo del juego, como la creación de niveles y la persistencia del progreso.
+** pygame.mixer: Implementación de música y efectos de sonido.
+** pygame.sprite: Sistema de manejo de objetos interactivos, como el jugador, los enemigos y los elementos del entorno.
 
 ## Características del Juego
 ### Jugabilidad
