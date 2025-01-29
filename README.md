@@ -13,7 +13,7 @@ Un juego de aventura 2D en el que un alienígena debe sobrevivir y reparar su na
 
 ## Características del Juego
 
-### Jugabilidad
+## Jugabilidad
 El jugador controla a **NOVNI**, quien tiene habilidades especiales como el salto, disparo, y el uso de bombas.
 A lo largo de los niveles, el jugador debe recolectar partes de la nave que le permitirán repararla y escapar de la Tierra.
 Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como salud, munición y bombas.
