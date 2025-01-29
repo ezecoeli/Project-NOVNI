@@ -12,8 +12,9 @@ Un juego de aventura 2D en el que un alienígena debe sobrevivir y reparar su na
 - **pygame.sprite**: Sistema de manejo de objetos interactivos, como el jugador, los enemigos y los elementos del entorno.
 
 ## Características del Juego
+
 ### Jugabilidad
-El jugador controla a NOVNI, quien tiene habilidades especiales como el salto, disparo, y el uso de bombas.
+El jugador controla a **NOVNI**, quien tiene habilidades especiales como el salto, disparo, y el uso de bombas.
 A lo largo de los niveles, el jugador debe recolectar partes de la nave que le permitirán repararla y escapar de la Tierra.
 Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como salud, munición y bombas.
 
@@ -52,5 +53,10 @@ A lo largo del viaje, NOVNI contará con la ayuda de algunos humanos que le ofre
 - Se añadirán mas niveles.
 - Se implementarán objetos que el jugador debe recoger para reparar su nave.
 
-# Contribuciones
+## Contribuciones
 ¡Contribuciones son bienvenidas! Si deseas mejorar este proyecto, puedes hacer un fork del repositorio y enviar un pull request con tus cambios. Asegúrate de seguir las buenas prácticas de codificación y agregar comentarios en el código para mayor claridad.
+
+## Licencia
+Copyright (c) [2025] [Ezequiel Camilo Coeli]. Todos los derechos reservados.
+
+Ninguna parte de este software puede ser reproducida, distribuida o utilizada sin el permiso explícito del autor.
