@@ -26,7 +26,7 @@ Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como 
 - Lanzar bombas.
 - Recursos: Se pueden recoger cajas de salud, munición y bombas para ayudar a NOVNI en su misión.
 
-### Niveles
+### Niveles
 
 El juego cuenta con varios niveles, donde NOVNI pasará por diferentes localizaciones, cada una con nuevos desafíos, enemigos y obstáculos. El objetivo es llegar a la localización del cuartel X5G y recoger las partes necesarias de la nave para repararla.
 
@@ -35,11 +35,11 @@ El juego cuenta con varios niveles, donde NOVNI pasará por diferentes localizac
 El juego contiene diferentes tipos de música (menú y juego).
 Se crearon sonidos para animaciones y acciones.
 
-### Gráficos
+### Gráficos
 
 El juego utiliza imágenes y sprites 2D para representar a los personajes, enemigos, elementos interactivos y fondos. Los niveles están diseñados a mano con detalles que dan la sensación de explorar diferentes entornos.
 
-### Estructura del Código
+### Estructura del Código
 
 El código está dividido en varias clases, cada una responsable de diferentes aspectos del juego:
 
@@ -48,7 +48,8 @@ Clases de interacción (ItemBox, HealthBar, etc.): Estas clases permiten al juga
 Mecánicas de explosiones y transiciones: Se implementan animaciones para explosiones y efectos de transición entre pantallas (como fade in/out).
 Mecánicas de la interfaz y eventos de juego: La lógica de control del flujo del juego, como las entradas del teclado, los menús, las pantallas de "Game Over" y las transiciones entre niveles, está gestionada dentro del bucle principal del juego.
 
-### Historia
+### Historia
+
 NOVNI, un alienígena explorador, se encuentra en la Tierra después de sufrir un accidente con su nave espacial. Durante su travesía, deberá recolectar piezas de su nave, con la esperanza de reparar la cápsula de escape y regresar a su hogar. Sin embargo, el rastreador de la nave ha dejado una última señal que apunta al cuartel X5G, donde NOVNI debe encontrar las piezas faltantes y resolver el misterio que lo ha traído hasta aquí.
 
 A lo largo del viaje, NOVNI contará con la ayuda de algunos humanos que le ofrecerán asistencia en su misión, pero también tendrá que enfrentarse a varios peligros y enemigos. ¿Podrá NOVNI escapar de la Tierra y volver a su hogar?
@@ -57,6 +58,10 @@ A lo largo del viaje, NOVNI contará con la ayuda de algunos humanos que le ofre
 - El jugador interactúa con personajes humanos que le ayudarán en su misión.
 - Se añadirán mas niveles.
 - Se implementarán objetos que el jugador debe recoger para reparar su nave.
+- Implementar sistema de puntuación
+- Nuevas habilidades para el jugador.
+- Nuevas mecánicas y efectos en acciones de ataque.
+- Mejoras y corrección de errores.
 
 ## Contribuciones
 ¡Contribuciones son bienvenidas! Si deseas mejorar este proyecto, puedes hacer un fork del repositorio y enviar un pull request con tus cambios. Asegúrate de seguir las buenas prácticas de codificación y agregar comentarios en el código para mayor claridad.
