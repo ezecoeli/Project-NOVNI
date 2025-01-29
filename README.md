@@ -18,7 +18,7 @@ El jugador controla a **NOVNI**, quien tiene habilidades especiales como el salt
 A lo largo de los niveles, el jugador debe recolectar partes de la nave que le permitirán repararla y escapar de la Tierra.
 Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como salud, munición y bombas.
 
-###Mecánicas de Juego
+### Mecánicas de Juego
 
 - Movimiento de izquierda a derecha.
 - Salto.
@@ -48,12 +48,12 @@ Clases de interacción (ItemBox, HealthBar, etc.): Estas clases permiten al juga
 Mecánicas de explosiones y transiciones: Se implementan animaciones para explosiones y efectos de transición entre pantallas (como fade in/out).
 Mecánicas de la interfaz y eventos de juego: La lógica de control del flujo del juego, como las entradas del teclado, los menús, las pantallas de "Game Over" y las transiciones entre niveles, está gestionada dentro del bucle principal del juego.
 
-## Historia
+### Historia
 NOVNI, un alienígena explorador, se encuentra en la Tierra después de sufrir un accidente con su nave espacial. Durante su travesía, deberá recolectar piezas de su nave, con la esperanza de reparar la cápsula de escape y regresar a su hogar. Sin embargo, el rastreador de la nave ha dejado una última señal que apunta al cuartel X5G, donde NOVNI debe encontrar las piezas faltantes y resolver el misterio que lo ha traído hasta aquí.
 
 A lo largo del viaje, NOVNI contará con la ayuda de algunos humanos que le ofrecerán asistencia en su misión, pero también tendrá que enfrentarse a varios peligros y enemigos. ¿Podrá NOVNI escapar de la Tierra y volver a su hogar?
 
-## Futuras implementaciones
+### Futuras implementaciones
 - El jugador interactúa con personajes humanos que le ayudarán en su misión.
 - Se añadirán mas niveles.
 - Se implementarán objetos que el jugador debe recoger para reparar su nave.
