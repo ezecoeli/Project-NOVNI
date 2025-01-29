@@ -1,15 +1,15 @@
-# NOVNI: Aventura de un Alien en la Tierra
+# **NOVNI**: Aventura de un Alien en la Tierra
 
 ## Descripción del Proyecto
 Un juego de aventura 2D en el que un alienígena debe sobrevivir y reparar su nave tras un aterrizaje forzoso en la Tierra. Durante su viaje, el jugador recolecta partes de la nave y combate enemigos, todo mientras explora diversos niveles con diferentes desafíos.
 
 ## Herramientas y Tecnologías utilizadas:
 
-- **Python: Lenguaje para el desarrollo del juego.
-- **Pygame: Biblioteca para la creación de videojuegos 2D, utilizada para gráficos, sonido, animaciones y control de eventos.
-- **csv: Gestión de datos del mundo del juego, como la creación de niveles y la persistencia del progreso.
-- **pygame.mixer: Implementación de música y efectos de sonido.
-- **pygame.sprite: Sistema de manejo de objetos interactivos, como el jugador, los enemigos y los elementos del entorno.
+- **Python**: Lenguaje para el desarrollo del juego.
+- **Pygame**: Biblioteca para la creación de videojuegos 2D, utilizada para gráficos, sonido, animaciones y control de eventos.
+- **csv**: Gestión de datos del mundo del juego, como la creación de niveles y la persistencia del progreso.
+- **pygame.mixer**: Implementación de música y efectos de sonido.
+- **pygame.sprite**: Sistema de manejo de objetos interactivos, como el jugador, los enemigos y los elementos del entorno.
 
 ## Características del Juego
 ### Jugabilidad
