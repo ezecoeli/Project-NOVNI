@@ -11,14 +11,14 @@ Un juego de aventura 2D en el que un alienígena debe sobrevivir y reparar su na
 - **pygame.mixer**: Implementación de música y efectos de sonido.
 - **pygame.sprite**: Sistema de manejo de objetos interactivos, como el jugador, los enemigos y los elementos del entorno.
 
-## Características del Juego
 
-## Jugabilidad
+## Características y jugabilidad
+
 El jugador controla a **NOVNI**, quien tiene habilidades especiales como el salto, disparo, y el uso de bombas.
 A lo largo de los niveles, el jugador debe recolectar partes de la nave que le permitirán repararla y escapar de la Tierra.
 Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como salud, munición y bombas.
 
-## Mecánicas de Juego
+### Mecánicas de Juego
 
 - Movimiento de izquierda a derecha.
 - Salto.
@@ -26,20 +26,20 @@ Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como 
 - Lanzar bombas.
 - Recursos: Se pueden recoger cajas de salud, munición y bombas para ayudar a NOVNI en su misión.
 
-## Niveles
+### Niveles
 
 El juego cuenta con varios niveles, donde NOVNI pasará por diferentes localizaciones, cada una con nuevos desafíos, enemigos y obstáculos. El objetivo es llegar a la localización del cuartel X5G y recoger las partes necesarias de la nave para repararla.
 
-## Música y Sonido
+### Música y Sonido
 
 El juego contiene diferentes tipos de música (menú y juego).
 Se crearon sonidos para animaciones y acciones.
 
-## Gráficos
+### Gráficos
 
 El juego utiliza imágenes y sprites 2D para representar a los personajes, enemigos, elementos interactivos y fondos. Los niveles están diseñados a mano con detalles que dan la sensación de explorar diferentes entornos.
 
-## Estructura del Código
+### Estructura del Código
 
 El código está dividido en varias clases, cada una responsable de diferentes aspectos del juego:
 
