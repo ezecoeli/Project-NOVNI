@@ -19,6 +19,7 @@ A lo largo de los niveles, el jugador debe recolectar partes de la nave que le p
 Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como salud, munición y bombas.
 
 ## Mecánicas de Juego
+
 - Movimiento de izquierda a derecha.
 - Salto.
 - Disparos.
@@ -26,16 +27,20 @@ Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como 
 - Recursos: Se pueden recoger cajas de salud, munición y bombas para ayudar a NOVNI en su misión.
 
 ## Niveles
+
 El juego cuenta con varios niveles, donde NOVNI pasará por diferentes localizaciones, cada una con nuevos desafíos, enemigos y obstáculos. El objetivo es llegar a la localización del cuartel X5G y recoger las partes necesarias de la nave para repararla.
 
 ## Música y Sonido
+
 El juego contiene diferentes tipos de música (menú y juego).
 Se crearon sonidos para animaciones y acciones.
 
 ## Gráficos
+
 El juego utiliza imágenes y sprites 2D para representar a los personajes, enemigos, elementos interactivos y fondos. Los niveles están diseñados a mano con detalles que dan la sensación de explorar diferentes entornos.
 
 ## Estructura del Código
+
 El código está dividido en varias clases, cada una responsable de diferentes aspectos del juego:
 
 Clases de objetos (Decoración, Agua, Salida, etc.): Estas clases controlan elementos del entorno, como decoraciones estáticas, agua y puntos de salida para los niveles.
