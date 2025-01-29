@@ -11,7 +11,7 @@ csv: Gestión de datos del mundo del juego, como la creación de niveles y la pe
 pygame.mixer: Implementación de música y efectos de sonido.
 pygame.sprite: Sistema de manejo de objetos interactivos, como el jugador, los enemigos y los elementos del entorno.
 
-### Características del Juego
+# Características del Juego
 ## Jugabilidad
 El jugador controla a NOVNI, quien tiene habilidades especiales como el salto, disparo, y el uso de bombas.
 A lo largo de los niveles, el jugador debe recolectar partes de la nave que le permitirán repararla y escapar de la Tierra.
