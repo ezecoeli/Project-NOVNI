@@ -18,7 +18,7 @@ El jugador controla a **NOVNI**, quien tiene habilidades especiales como el salt
 A lo largo de los niveles, el jugador debe recolectar partes de la nave que le permitirán repararla y escapar de la Tierra.
 Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como salud, munición y bombas.
 
-### Mecánicas de Juego
+###Mecánicas de Juego
 
 - Movimiento de izquierda a derecha.
 - Salto.
