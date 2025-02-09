@@ -50,6 +50,12 @@ Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como 
 * **S:** Lanzar bomba.
 * **Esc:** Salir del juego.
 
+## Cómo jugar
+
+1. Clonar el repositorio.
+2. Instalar las dependencias (`pygame`).
+3. Ejecutar el archivo `main.py`.
+
 ### Niveles
 
 El juego cuenta con varios niveles, donde NOVNI pasará por diferentes localizaciones, cada una con nuevos desafíos, enemigos y obstáculos. El objetivo es llegar a la localización del cuartel X5G y recoger las partes necesarias de la nave para repararla.
