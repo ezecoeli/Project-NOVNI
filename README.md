@@ -69,16 +69,16 @@ NOVNI, un alienígena explorador, sufre un accidente con su nave espacial y se v
 Para lograr su objetivo deberá enfrentar al Dr. Metroid y su ejército.
 ¿Podrá NOVNI llegar a su nave para repararla y volver a su hogar?
 
+### Futuras implementaciones
+* **Añadir efectos visuales:**  Como partículas y explosiones más elaboradas.
+* **Optimizar el rendimiento:**  Para un juego más fluido.
+* **Mejoras:** Corrección de errores.
+
 ## Cómo jugar
 
 1. Clonar el repositorio.
 2. Instalar las dependencias (`pygame`).
 3. Ejecutar el archivo `main.py`.
-
-### Futuras implementaciones
-* **Añadir efectos visuales:**  Como partículas y explosiones más elaboradas.
-* **Optimizar el rendimiento:**  Para un juego más fluido.
-* **Mejoras:** Corrección de errores.
 
 ## Contribuciones
 ¡Contribuciones son bienvenidas! Si deseas mejorar este proyecto, puedes hacer un fork del repositorio y enviar un pull request con tus cambios. Asegúrate de seguir las buenas prácticas de codificación y agregar comentarios en el código para mayor claridad.
