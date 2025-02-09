@@ -50,12 +50,6 @@ Se debe luchar contra enemigos, evitando obstáculos y recogiendo recursos como 
 * **S:** Lanzar bomba.
 * **Esc:** Salir del juego.
 
-## Cómo jugar
-
-1. Clonar el repositorio.
-2. Instalar las dependencias (`pygame`).
-3. Ejecutar el archivo `main.py`.
-
 ### Niveles
 
 El juego cuenta con varios niveles, donde NOVNI pasará por diferentes localizaciones, cada una con nuevos desafíos, enemigos y obstáculos. El objetivo es llegar a la localización del cuartel X5G y recoger las partes necesarias de la nave para repararla.
@@ -74,6 +68,12 @@ El juego utiliza imágenes y sprites 2D para representar a los personajes, enemi
 NOVNI, un alienígena explorador, sufre un accidente con su nave espacial y se ve obligado a realizar un aterrizaje forzoso en la Tierra. Durante su travesía, deberá recolectar piezas de su nave con la esperanza de repararla y regresar a su hogar. Sin embargo, el rastreador de la nave ha dejado una última señal que apunta al cuartel X5G, donde NOVNI debe encontrar las piezas faltantes y resolver el misterio que lo ha traído hasta aquí. 
 Para lograr su objetivo deberá enfrentar al Dr. Metroid y su ejército.
 ¿Podrá NOVNI llegar a su nave para repararla y volver a su hogar?
+
+## Cómo jugar
+
+1. Clonar el repositorio.
+2. Instalar las dependencias (`pygame`).
+3. Ejecutar el archivo `main.py`.
 
 ### Futuras implementaciones
 * **Añadir efectos visuales:**  Como partículas y explosiones más elaboradas.
