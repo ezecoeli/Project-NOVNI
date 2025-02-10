@@ -65,9 +65,7 @@ El juego utiliza imágenes y sprites 2D para representar a los personajes, enemi
 
 ### Historia
 
-NOVNI, un alienígena explorador, sufre un accidente con su nave espacial y se ve obligado a realizar un aterrizaje forzoso en la Tierra. Durante su travesía, deberá recolectar piezas de su nave con la esperanza de repararla y regresar a su hogar. Sin embargo, el rastreador de la nave ha dejado una última señal que apunta al cuartel X5G, donde NOVNI debe encontrar las piezas faltantes y resolver el misterio que lo ha traído hasta aquí. 
-Para lograr su objetivo deberá enfrentar al Dr. Metroid y su ejército.
-¿Podrá NOVNI llegar a su nave para repararla y volver a su hogar?
+En su viaje por el universo, el pequeño NOVNI sufre un accidente al ser alcanzado por una tormenta cósmica y aterriza de emergencia en la Tierra. Para regresar a casa, debe recuperar las piezas dispersas y llegar al cuartel del ejército X5G donde al parecer el Dr. Metroid tiene secuestrada su nave. Durante su camino deberá enfrentar a los soldados que quieren atraparlo para analizarlo. ¿Podrá NOVNI reconstruir su nave y regresar a casa?
 
 ### Futuras implementaciones
 * **Añadir efectos visuales:**  Como partículas y explosiones más elaboradas.
