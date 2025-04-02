@@ -78,9 +78,6 @@ En su viaje por el universo, el pequeño NOVNI sufre un accidente al ser alcanza
 2. Instalar las dependencias (`pygame`).
 3. Ejecutar el archivo `main.py`.
 
-## Contribuciones
-¡Contribuciones son bienvenidas! Si deseas mejorar este proyecto, puedes hacer un fork del repositorio y enviar un pull request con tus cambios. Asegúrate de seguir las buenas prácticas de codificación y agregar comentarios en el código para mayor claridad.
-
 # Licencia
 Copyright (c) [2025] [Ezequiel Camilo Coeli]. Todos los derechos reservados.
 
